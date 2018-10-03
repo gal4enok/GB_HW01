@@ -1,28 +1,29 @@
 public class BankAccount {
-    private int _accountNumber;
-    private int _balance;
+    private int accountNumber;
+    private int balance;
 
 
     public int get_balance() {
-        return _balance;
+        return balance;
     }
 
-    public void set_balance(int _balance) {
-        this._balance = _balance;
+    public void set_balance(int balance) {
+        this.balance = balance;
     }
 
     public BankAccount(int accountNumber, int balance){
-        this._accountNumber = accountNumber;
-        this._balance = balance;
+        this.accountNumber = accountNumber;
+        this.balance = balance;
 
     }
+
     public void credit(int incomeAmount){
-        this._balance+=incomeAmount;
+        this.balance+=incomeAmount;
     }
 
     public void debit(int outcomeAmount){
 
-        if (this._balance >=outcomeAmount) {this._balance-=outcomeAmount;}
+        if (this.balance >=outcomeAmount) {this.balance-=outcomeAmount;}
                 else System.out.println("Debit amount is more than left amount");
     }
 
