@@ -4,7 +4,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
 import pages.ProductPage;
 
-public class AddToCartFromMainPageTest extends RegistrationBuyTwoDressesCheckCartTest {
+public class AddToCartFromMainPageTest extends BaseTest {
     private ProductPage productPage;
 
     @Test
@@ -24,6 +24,6 @@ public class AddToCartFromMainPageTest extends RegistrationBuyTwoDressesCheckCar
     }
 
     /*
-    @Test(@DataProvider = "RegisterNewuser", dataProviderClass = data.RegistrationDataProvider)
+    @Test(@DataProvider = "RegisterNewuser", dataProviderClass = data.LoginDataProvider)
     public void*/
 }

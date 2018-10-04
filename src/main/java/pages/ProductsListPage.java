@@ -13,6 +13,7 @@ import java.util.List;
 
 public class ProductsListPage {
     public WebDriver driver;
+    private AddToCartPage addToCartPage;
 
     public ProductsListPage(WebDriver driver){
         this.driver = driver;
@@ -26,14 +27,20 @@ public class ProductsListPage {
     private WebElement sortByDDList;
 
     @FindBy(xpath = "//div/div/div[3]/div/div[2]/a[@title='Add to cart']")
-    private List <WebElement> listOfProducts;
+    private List <WebElement> listOfProductsAddToCart;
+
+    @FindBy(xpath = "//div/div/div[2]/h5")
+    private List <WebElement> listOfProductsName;
+
+    @FindBy(xpath = "//div[@class='product-count']")
+    private WebElement amountOfProductsName;
+
 
     @FindBy(xpath = "//ul[@class='product_list row list']/li[2]/div/div/div[3]/div/div[2]/a")
     private WebElement secondProduct;
 
     @FindBy(xpath = "//ul[@class='product_list row list']/li/div/div/div[3]/div/div[2]/a")
     private WebElement firstProduct;
-
 
 
     public void selectListView(){
@@ -57,8 +64,23 @@ public class ProductsListPage {
         secondProduct.click();
     }
  */
+
     public void addToCartProducts(int itemIndex){
-        listOfProducts.get(itemIndex).click();
+        listOfProductsAddToCart.get(itemIndex).click();
+    }
+
+    public int getAmountOfProducts(){
+
+        String amountOfProductStr = amountOfProductsName.getText();
+        int startSubString = amountOfProductStr.indexOf("of ")+3;
+        int endSubString = amountOfProductStr.indexOf(" items");
+
+        String amountString = amountOfProductStr.substring(startSubString,  endSubString) ;
+        return Integer.parseInt(amountString);
+    }
+
+    public String getNameOfProduct(int itemIndex){
+        return listOfProductsName.get(itemIndex).getText();
     }
 
 }

@@ -15,8 +15,15 @@ public class AutentificationPage {
         PageFactory.initElements(driver, this);
     }
 
+    @FindBy(id = "email_create")
+    private WebElement emailCreateAnAccount;
+
+    @FindBy(id = "SubmitCreate")
+    private WebElement createAnAccountButton;
+
+
     @FindBy(id = "email")
-    private WebElement email;
+    private WebElement emailAlreadyRegistered;
 
     @FindBy(id = "passwd")
     private WebElement password;
@@ -27,9 +34,13 @@ public class AutentificationPage {
     @FindBy(xpath = "//a[@title='Recover your forgotten password']")
     private WebElement forgotPassword;
 
+
+    @FindBy(xpath = "//div[@class='alert alert-danger']/ol/li")
+    private WebElement validationMessage;
+
     //laizy inititalization
     public AutentificationPage typeEmail(Account account){
-        email.sendKeys(account.getEmail());
+        emailAlreadyRegistered.sendKeys(account.getEmail());
         return this;
     }
 
@@ -37,6 +48,18 @@ public class AutentificationPage {
         password.sendKeys(account.getPassword());
         return this;
     }
+
+    public void loginIntoAccount(String userEmail, String userPass){
+        emailAlreadyRegistered.sendKeys(userEmail);
+        password.sendKeys(userPass);
+        loginButton.click();
+    }
+
+    public void createAnAccount(String userEmail){
+        emailCreateAnAccount.sendKeys(userEmail);
+        createAnAccountButton.click();
+    }
+
 
     public void clickSignIn(){
         loginButton.click();
@@ -46,4 +69,7 @@ public class AutentificationPage {
         forgotPassword.click();
     }
 
+    public String getValidationMessage() {
+        return validationMessage.getText();
+    }
 }

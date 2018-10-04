@@ -4,9 +4,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.List;
 
 public class CartSummaryPage {
     public WebDriver driver;
@@ -38,6 +41,28 @@ public class CartSummaryPage {
     @FindBy(xpath = "//p[@class='cart_navigation clearfix']/a[@title ='Proceed to checkout']")
     private WebElement proceedToCheckout;
 
+    @FindBy(xpath = "//td[@class='cart_total']/span[@class='price']")
+    private List<WebElement> listOfPriceOfProductsInCart;
+
+    @FindBy(xpath = "//td[@class='cart_total']/span[@class='price']")
+    private WebElement pricetest;
+
+    @FindBy(xpath = "//i[@class='icon-trash']")
+    private List<WebElement> listOfTrashOfProductsInCart;
+
+
+    public double returnPriceProductInCart(int index){
+        new WebDriverWait(driver, 10).until(ExpectedConditions.
+                visibilityOf(proceedToCheckout));
+        String priceProduct = listOfPriceOfProductsInCart.get(index).getText();
+
+        double price = Double.parseDouble(priceProduct.substring(1, priceProduct.length()));
+        return price;
+    }
+
+    public void deleteProductFromCart(int index){
+        listOfTrashOfProductsInCart.get(index).click();
+    }
 
     public String returnAmountProductsInCart(){
         String quantityString = productsQuantity.getText();

@@ -1,11 +1,11 @@
 import model.Account;
-import org.junit.Assert;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 import pages.AutentificationPage;
 import pages.MyAccountPage;
 import pages.NavigationPage;
 
-public class LoginTest extends RegistrationBuyTwoDressesCheckCartTest{
+public class LoginTest extends BaseTest{
 
     private NavigationPage navigationPage;
     private AutentificationPage autentificationPage;
